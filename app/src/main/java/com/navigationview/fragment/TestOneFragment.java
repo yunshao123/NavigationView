@@ -14,6 +14,7 @@ import com.navigationview.base.BaseViewPageFragment;
 
 public class TestOneFragment extends BaseViewPageFragment {
 
+
     @Override
     protected int setLayout(LayoutInflater inflater) {
         return R.layout.base_one;
