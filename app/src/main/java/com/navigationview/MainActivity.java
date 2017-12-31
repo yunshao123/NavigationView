@@ -26,6 +26,9 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * 兰超
+ */
 public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
     @BindView(R.id.naview)
     NavigationView navigationView;
