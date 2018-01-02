@@ -28,6 +28,7 @@ import butterknife.ButterKnife;
 
 /**
  * 兰超
+ * 666
  */
 public class MainActivity extends AppCompatActivity implements OnFragmentInteractionListener {
     @BindView(R.id.naview)
