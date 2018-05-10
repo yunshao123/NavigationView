@@ -1,35 +1,32 @@
-package com.navigationview.fragment;
+package com.navigationview.base.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
 import com.navigationview.R;
 import com.navigationview.base.BaseViewPageFragment;
+import com.navigationview.base.utils.BlueToothUtils;
 
 /**
  * @Auth Mr.lc(兰超)
  * @Date 2017/12/29
- * @Time 14:16
+ * @Time 14:19
  */
 
-/**
- * 好玩啊
- */
-public class TestOneFragment extends BaseViewPageFragment {
-
-
+public class TestTwoFragment extends BaseViewPageFragment {
     @Override
     protected int setLayout(LayoutInflater inflater) {
-        return R.layout.base_one;
+        return R.layout.base_two;
     }
 
     @Override
     protected void init(Bundle savedInstanceState) {
 
+
     }
 
     @Override
     protected void lazyloadData() {
-
+        BlueToothUtils.ifOpenBlueTooth(mContext);
     }
 }

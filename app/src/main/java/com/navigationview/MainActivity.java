@@ -18,8 +18,8 @@ import android.widget.Toast;
 
 import com.navigationview.base.adapter.TabLayoutAdapter;
 import com.navigationview.base.intfrence.OnFragmentInteractionListener;
-import com.navigationview.fragment.TestOneFragment;
-import com.navigationview.fragment.TestTwoFragment;
+import com.navigationview.base.fragment.TestOneFragment;
+import com.navigationview.base.fragment.TestTwoFragment;
 
 import java.util.ArrayList;
 
