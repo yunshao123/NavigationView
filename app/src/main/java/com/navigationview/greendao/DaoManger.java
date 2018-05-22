@@ -1,9 +1,9 @@
 package com.navigationview.greendao;
 
 import android.content.Context;
-import android.widget.Toast;
+import android.util.Log;
 
-import com.navigationview.base.utils.User;
+import com.navigationview.greendao.bean.User;
 
 import java.util.List;
 
@@ -54,13 +54,13 @@ public class DaoManger {
         UserDao userDao=getDaoSession().getUserDao();
         user=new User(null,"兰超");
         userDao.insert(user);
-        Toast.makeText(context,"插入成功",Toast.LENGTH_SHORT);
+        Log.e(TAG,"插入成功");
     }
     public List<User> queryUserDao(User user){
         UserDao userDao=getDaoSession().getUserDao();
         List<User> userList = userDao.queryBuilder()
                 .where(UserDao.Properties.Id.notEq(1))
-                .limit(5)
+                .limit(100)
                 .build().list();
         return userList;
     }

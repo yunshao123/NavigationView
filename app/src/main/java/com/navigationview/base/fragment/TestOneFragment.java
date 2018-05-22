@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.airbnb.lottie.LottieAnimationView;
 import com.navigationview.R;
 import com.navigationview.base.BaseViewPageFragment;
-import com.navigationview.base.utils.User;
+import com.navigationview.greendao.bean.User;
 import com.navigationview.greendao.DaoManger;
 
 import butterknife.BindView;

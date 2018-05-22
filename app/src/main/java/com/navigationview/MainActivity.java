@@ -1,5 +1,6 @@
 package com.navigationview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -16,10 +17,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.navigationview.base.activity.TestActivity;
 import com.navigationview.base.adapter.TabLayoutAdapter;
-import com.navigationview.base.intfrence.OnFragmentInteractionListener;
 import com.navigationview.base.fragment.TestOneFragment;
-import com.navigationview.base.fragment.TestTwoFragment;
+import com.navigationview.base.fragment.TestThreeFragment;
+import com.navigationview.base.intfrence.OnFragmentInteractionListener;
 
 import java.util.ArrayList;
 
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                     case R.id.nav_camera:
                         Log.e("dddddddddd","eeeeee");
                         Toast.makeText(MainActivity.this,"nav_camera",Toast.LENGTH_SHORT).show();
-
+                        startActivity(new Intent(MainActivity.this, TestActivity.class));
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     private void initFragment(){
         fragmentArrayList = new ArrayList<>();
         fragmentArrayList.add(new TestOneFragment());
-        fragmentArrayList.add(new TestTwoFragment());
+        fragmentArrayList.add(new TestThreeFragment());
     }
 
     @Override

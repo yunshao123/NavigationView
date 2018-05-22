@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.navigationview">
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     允许搜索发现附近设备以及配对
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
     允许连接到已配对的蓝牙设备
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     //获取设备网络状态，禁用后无法获取网络状态
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     //网络权限，当禁用后，无法进行检索等相关业务
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     //读取设备硬件信息，统计数据
@@ -15,7 +16,7 @@
     //读取系统信息，包含系统版本等信息，用作统计
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     //获取设备的网络状态，鉴权所需网络代理
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     //允许sd卡写权限，需写入地图数据，禁用后无法显示地图
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     //获取统计数据
@@ -43,7 +44,16 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="7e0LX7qr0oTKt34OjbpLapiwG3is1e5G" />
 
-        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"> </service>
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <activity
+            android:name=".base.activity.VideoPlayActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity android:name=".base.activity.TestActivity"></activity>
     </application>
 
 </manifest>

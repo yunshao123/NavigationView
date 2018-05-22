@@ -1,4 +1,4 @@
-package com.navigationview.base.utils;
+package com.navigationview.greendao.bean;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
