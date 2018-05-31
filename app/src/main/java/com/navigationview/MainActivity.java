@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.navigationview.base.activity.EventTestActivity;
 import com.navigationview.base.activity.TestActivity;
 import com.navigationview.base.adapter.TabLayoutAdapter;
 import com.navigationview.base.fragment.TestOneFragment;
@@ -71,6 +72,9 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
                         Log.e("dddddddddd","eeeeee");
                         Toast.makeText(MainActivity.this,"nav_camera",Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MainActivity.this, TestActivity.class));
+                        break;
+                    case R.id.nav_gallery:
+                        startActivity(new Intent(MainActivity.this, EventTestActivity.class));
                         break;
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);

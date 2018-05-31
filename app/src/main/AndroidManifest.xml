@@ -53,7 +53,8 @@
             android:name=".base.activity.VideoPlayActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
-        <activity android:name=".base.activity.TestActivity"></activity>
+        <activity android:name=".base.activity.TestActivity" />
+        <activity android:name=".base.activity.EventTestActivity"></activity>
     </application>
 
 </manifest>
