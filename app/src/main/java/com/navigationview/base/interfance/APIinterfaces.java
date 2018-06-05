@@ -2,6 +2,7 @@ package com.navigationview.base.interfance;
 
 import com.navigationview.base.bean.LoginBean;
 
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -17,4 +18,9 @@ public interface APIinterfaces {
     @POST("m/specialController.do?login")
     Call<LoginBean> login(@Field("username") String name, @Field("password") String passwd,
                           @Field("aversion") String aversion, @Field("xgtoken")String xgtoken);
+    @FormUrlEncoded
+    @POST("m/specialController.do?login")
+    Observable<LoginBean> login2(@Field("username") String name, @Field("password") String passwd,
+                                @Field("aversion") String aversion, @Field("xgtoken")String xgtoken);
+
 }

@@ -14,9 +14,10 @@ import com.navigationview.base.utils.BaseRetrofit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class EventTestActivity extends AppCompatActivity {
     @BindView(R.id.ll)
@@ -38,16 +39,39 @@ public class EventTestActivity extends AppCompatActivity {
 //                        .addConverterFactory(ScalarsConverterFactory.create())
 //                        .addConverterFactory(GsonConverterFactory.create()).build();
 
-                Call<LoginBean> call= BaseRetrofit.getRetrofit().login("15619187872","123456","1.0","79b61592f06cba684de095f7598955317263da77");
-                call.enqueue(new Callback<LoginBean>() {
+//                Call<LoginBean> call= BaseRetrofit.getRetrofit().login("15619187872","123456","1.0","79b61592f06cba684de095f7598955317263da77");
+//                call.enqueue(new Callback<LoginBean>() {
+//                    @Override
+//                    public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
+//                        Log.e(TAG,response.body().getMsg());
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<LoginBean> call, Throwable t) {
+//
+//                    }
+//                });
+                BaseRetrofit.getRetrofit().login2("15619187872","123456","1.0","79b61592f06cba684de095f7598955317263da77")
+                        .subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<LoginBean>() {
+                    Disposable d;
                     @Override
-                    public void onResponse(Call<LoginBean> call, Response<LoginBean> response) {
-                        Log.e(TAG,response.body().getMsg());
+                    public void onSubscribe(Disposable d) {
+                      this.d=d;
                     }
 
                     @Override
-                    public void onFailure(Call<LoginBean> call, Throwable t) {
+                    public void onNext(LoginBean value) {
+                        Log.e(TAG,value.getMsg());
+                    }
 
+                    @Override
+                    public void onError(Throwable e) {
+                      d.dispose();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                      d.dispose();
                     }
                 });
             }

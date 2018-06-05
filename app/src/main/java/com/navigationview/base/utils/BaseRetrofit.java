@@ -3,6 +3,7 @@ package com.navigationview.base.utils;
 import com.navigationview.base.interfance.APIinterfaces;
 
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
@@ -22,7 +23,8 @@ public class BaseRetrofit {
                 if (retrofit==null){
                     Retrofit retrofit=new Retrofit.Builder().baseUrl("http://121.196.228.220:8080/jeecg-framework/")
                             .addConverterFactory(ScalarsConverterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create()).build();
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build();
                     apIinterfaces=retrofit.create(APIinterfaces.class);
                 }
             }
