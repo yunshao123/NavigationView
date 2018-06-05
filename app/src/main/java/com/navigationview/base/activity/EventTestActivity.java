@@ -11,19 +11,45 @@ import android.widget.LinearLayout;
 import com.navigationview.R;
 import com.navigationview.base.bean.LoginBean;
 import com.navigationview.base.utils.BaseRetrofit;
+import com.navigationview.base.utils.RxSchedulers;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 public class EventTestActivity extends AppCompatActivity {
     @BindView(R.id.ll)
     LinearLayout linearLayout;
     @BindView(R.id.btn)
     Button button;
+    @OnClick(R.id.btn2)
+    void setButton(){
+        BaseRetrofit.getRetrofit().change("18710948468","123456").compose(RxSchedulers.observableIO2Main(this))
+                .subscribe( new Observer<Response<String>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Response<String> stringResponse) {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                } );
+    }
     public static final String TAG ="AppCompatActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +57,6 @@ public class EventTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event_test);
         ButterKnife.bind(this);
         button.setOnClickListener(new View.OnClickListener() {
-
 
             @Override
             public void onClick(View v) {
@@ -46,13 +71,15 @@ public class EventTestActivity extends AppCompatActivity {
 //                        Log.e(TAG,response.body().getMsg());
 //                    }
 //
-//                    @Override
+//                    @
 //                    public void onFailure(Call<LoginBean> call, Throwable t) {
 //
 //                    }
 //                });
-                BaseRetrofit.getRetrofit().login2("15619187872","123456","1.0","79b61592f06cba684de095f7598955317263da77")
-                        .subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<LoginBean>() {
+                    BaseRetrofit.getRetrofit()
+                        .login2("15619187872","123456","1.0","79b61592f06cba684de095f7598955317263da77")
+                        .compose(RxSchedulers.observableIO2Main(EventTestActivity.this))
+                        .subscribe(new Observer<LoginBean>() {
                     Disposable d;
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -62,6 +89,7 @@ public class EventTestActivity extends AppCompatActivity {
                     @Override
                     public void onNext(LoginBean value) {
                         Log.e(TAG,value.getMsg());
+
                     }
 
                     @Override
@@ -97,4 +125,9 @@ public class EventTestActivity extends AppCompatActivity {
         return super.onTouchEvent(event);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
 }
