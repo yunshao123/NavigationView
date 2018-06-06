@@ -1,10 +1,10 @@
 package com.navigationview.base.interfance;
 
+import com.navigationview.base.bean.BaseBean;
 import com.navigationview.base.bean.LoginBean;
 
 import io.reactivex.Observable;
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -21,7 +21,7 @@ public interface APIinterfaces {
                           @Field("aversion") String aversion, @Field("xgtoken")String xgtoken);
     @FormUrlEncoded
     @POST("m/specialController.do?login")
-    Observable<LoginBean> login2(@Field("username") String name, @Field("password") String passwd,
+    Observable<BaseBean<Object>> login2(@Field("username") String name, @Field("password") String passwd,
                                 @Field("aversion") String aversion, @Field("xgtoken")String xgtoken);
 
     /**
@@ -30,5 +30,5 @@ public interface APIinterfaces {
      * 修改密码参数
      */
     @FormUrlEncoded @POST("wyApp.do?updatePwd")
-    Observable<Response<String>> change(@Field("employeeId") String user, @Field("pwd") String pwd);
+    Observable<String> change(@Field("employeeId") String user, @Field("pwd") String pwd);
 }

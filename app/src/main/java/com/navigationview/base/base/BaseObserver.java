@@ -1,25 +1,25 @@
 package com.navigationview.base.base;
 
 
+import com.navigationview.base.bean.BaseBean;
+
 import io.reactivex.Observer;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
 
-
-public abstract class BaseObserver<T> implements Observer<Response<T>> {
+public abstract class BaseObserver<T> implements Observer<BaseBean<T>> {
 
 	@Override
-	public final void onNext(@NonNull Response<T> result) {
-		if (result.getRet() == -1) {
-			onFailure(new Exception(result.getMsg()),  result.getMsg());
+	public  void onNext(BaseBean<T> result) {
+		if (result.getStatus().equals("0")) {
+			onSuccess(result.getResult());
 		} else {
-			onSuccess(result.getData());
+			onFailure(new Exception(result.getMsg()),  result.getMsg());
 		}
 	}
 
 	@Override
-	public void onError(@NonNull Throwable e) {
+	public void onError(Throwable e) {
 
 	}
 
@@ -31,7 +31,7 @@ public abstract class BaseObserver<T> implements Observer<Response<T>> {
 	}
 
 	@Override
-	public void onSubscribe(@NonNull Disposable d) {
+	public void onSubscribe(Disposable d) {
 
 	}
 

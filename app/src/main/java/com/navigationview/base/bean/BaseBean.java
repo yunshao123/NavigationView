@@ -6,7 +6,7 @@ package com.navigationview.base.bean;
  * @Time 17:06
  */
 public class BaseBean<T> {
-    public String msg;
+    public  String msg;
     public  String status;
 
     public String getMsg() {
