@@ -1,5 +1,6 @@
 package com.navigationview.base.interfance;
 
+import com.navigationview.base.bean.BaseBean;
 import com.navigationview.base.bean.LoginBean;
 
 import io.reactivex.Observable;
@@ -20,7 +21,14 @@ public interface APIinterfaces {
                           @Field("aversion") String aversion, @Field("xgtoken")String xgtoken);
     @FormUrlEncoded
     @POST("m/specialController.do?login")
-    Observable<LoginBean> login2(@Field("username") String name, @Field("password") String passwd,
+    Observable<BaseBean<Object>> login2(@Field("username") String name, @Field("password") String passwd,
                                 @Field("aversion") String aversion, @Field("xgtoken")String xgtoken);
 
+    /**
+     * @Auth Mr.lc(兰超)
+     * @Date 2017/1/12 17:05
+     * 修改密码参数
+     */
+    @FormUrlEncoded @POST("wyApp.do?updatePwd")
+    Observable<String> change(@Field("employeeId") String user, @Field("pwd") String pwd);
 }

@@ -9,21 +9,37 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.navigationview.R;
-import com.navigationview.base.bean.LoginBean;
+import com.navigationview.base.base.BaseObsever;
+import com.navigationview.base.bean.BaseBean;
 import com.navigationview.base.utils.BaseRetrofit;
+import com.navigationview.base.utils.RxSchedulers;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import butterknife.OnClick;
 
 public class EventTestActivity extends AppCompatActivity {
     @BindView(R.id.ll)
     LinearLayout linearLayout;
     @BindView(R.id.btn)
     Button button;
+    @OnClick(R.id.btn2)
+    void setButton(){
+        BaseRetrofit.getRetrofit()
+                .login2("15619187872","123456","1.0","79b61592f06cba684de095f7598955317263da77")
+                .compose(RxSchedulers.observableIO2Main(EventTestActivity.this))
+                .subscribe( new BaseObsever<Object>( this ) {
+                    @Override
+                    public void onSuccees(BaseBean<Object> t) throws Exception {
+                        Log.e(TAG,t.getResult().toString());
+                    }
+
+                    @Override
+                    public void onFailure(Throwable e, boolean isNetWorkError) throws Exception {
+                        Log.e(TAG,"error");
+                    }
+                } );
+    }
     public static final String TAG ="AppCompatActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +47,6 @@ public class EventTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event_test);
         ButterKnife.bind(this);
         button.setOnClickListener(new View.OnClickListener() {
-
 
             @Override
             public void onClick(View v) {
@@ -46,34 +61,37 @@ public class EventTestActivity extends AppCompatActivity {
 //                        Log.e(TAG,response.body().getMsg());
 //                    }
 //
-//                    @Override
+//                    @
 //                    public void onFailure(Call<LoginBean> call, Throwable t) {
 //
 //                    }
 //                });
-                BaseRetrofit.getRetrofit().login2("15619187872","123456","1.0","79b61592f06cba684de095f7598955317263da77")
-                        .subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<LoginBean>() {
-                    Disposable d;
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                      this.d=d;
-                    }
-
-                    @Override
-                    public void onNext(LoginBean value) {
-                        Log.e(TAG,value.getMsg());
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                      d.dispose();
-                    }
-
-                    @Override
-                    public void onComplete() {
-                      d.dispose();
-                    }
-                });
+//                    BaseRetrofit.getRetrofit()
+//                        .login2("15619187872","123456","1.0","79b61592f06cba684de095f7598955317263da77")
+//                        .compose(RxSchedulers.observableIO2Main(EventTestActivity.this))
+//                        .subscribe(new Observer<LoginBean>() {
+//                    Disposable d;
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                      this.d=d;
+//                    }
+//
+//                    @Override
+//                    public void onNext(LoginBean value) {
+//                        Log.e(TAG,value.getMsg());
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                      d.dispose();
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                      d.dispose();
+//                    }
+//                });
             }
         });
         button.setOnLongClickListener(new View.OnLongClickListener() {
@@ -97,4 +115,9 @@ public class EventTestActivity extends AppCompatActivity {
         return super.onTouchEvent(event);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
 }
