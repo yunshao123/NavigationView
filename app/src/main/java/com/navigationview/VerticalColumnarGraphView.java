@@ -226,12 +226,12 @@ public class VerticalColumnarGraphView extends View {
         textPaint.setTextSize(axisLabelTextSize);
         textPaint.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
         textPaint.setAlpha(0xFF);
-        drawXAxisLabels(canvas, xAxisScales);
+
         drawYAxisLabels(canvas, yAxisScales);
 
         clipRect.set(getPaddingLeft() + lOffset, getPaddingTop() + tOffset, getWidth() - getPaddingRight() - rOffset, getHeight() - getPaddingBottom() - bOffset);
         drawItems(canvas);
-
+        drawXAxisLabels(canvas, xAxisScales);
         if (isPressed) {
 
         } else {
@@ -323,7 +323,7 @@ public class VerticalColumnarGraphView extends View {
         }
         return yAxisScales;
     }
-
+      float x;
     /**
      * 画X轴上的刻度
      *
@@ -342,8 +342,12 @@ public class VerticalColumnarGraphView extends View {
             textPaint.getTextBounds(axisLabel, 0, axisLabel.length(), rect);
             Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
             float basicY = clipRect.bottom - rect.height() / 2.0f;
-            float x = xAxisScales[i] - rect.width() / 2.0f;
+//            float x = xAxisScales[i] - rect.width() / 2.0f;
+            ColumnarItem columnarItem=items.get(i);
+
             float baseLine = basicY - rect.height() / 2.0f + (rect.height() - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top;
+             baseLine=baseLine+bOffset;
+             x=columnarItem.getLeft()+(columnarItem.getRight()-columnarItem.getLeft())/2-rect.width()/2;
             canvas.drawText(axisLabel, 0, axisLabel.length(), x, baseLine, textPaint);
         }
     }
@@ -695,7 +699,7 @@ public class VerticalColumnarGraphView extends View {
          * @param unit    unit
          * @param value   value
          * @return builder
-         * @see TypedValue#applyDimension(int, float, DisplayMetrics)
+         *
          */
         public Builder setAxisLabelTextSize(@NonNull Context context, int unit, float value) {
             this.axisLabelTextSize = TypedValue.applyDimension(unit, value, context.getResources().getDisplayMetrics());
