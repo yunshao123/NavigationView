@@ -54,7 +54,8 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity android:name=".base.activity.TestActivity" />
-        <activity android:name=".base.activity.EventTestActivity"></activity>
+        <activity android:name=".base.activity.EventTestActivity" />
+        <activity android:name=".base.activity.LineChartActivity"></activity>
     </application>
 
 </manifest>

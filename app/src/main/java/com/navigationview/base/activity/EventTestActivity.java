@@ -9,10 +9,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.navigationview.R;
-import com.navigationview.base.base.BaseObsever;
-import com.navigationview.base.bean.BaseBean;
-import com.navigationview.base.utils.BaseRetrofit;
-import com.navigationview.base.utils.RxSchedulers;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,20 +21,7 @@ public class EventTestActivity extends AppCompatActivity {
     Button button;
     @OnClick(R.id.btn2)
     void setButton(){
-        BaseRetrofit.getRetrofit()
-                .login2("15619187872","123456","1.0","79b61592f06cba684de095f7598955317263da77")
-                .compose(RxSchedulers.observableIO2Main(EventTestActivity.this))
-                .subscribe( new BaseObsever<Object>( this ) {
-                    @Override
-                    public void onSuccees(BaseBean<Object> t) throws Exception {
-                        Log.e(TAG,t.getResult().toString());
-                    }
 
-                    @Override
-                    public void onFailure(Throwable e, boolean isNetWorkError) throws Exception {
-                        Log.e(TAG,"error");
-                    }
-                } );
     }
     public static final String TAG ="AppCompatActivity";
     @Override

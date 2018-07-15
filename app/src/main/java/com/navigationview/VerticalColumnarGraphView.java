@@ -362,6 +362,7 @@ public class VerticalColumnarGraphView extends View {
         if (yAxisLabels == null)
             return;
 
+
         for (int i = 0; i < yAxisLabels.length; i++) {
             String axisLabel = yAxisLabels[i];
             if (axisLabel == null || axisLabel.trim().length() == 0)
